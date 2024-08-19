@@ -25,6 +25,7 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     end = start + page_size
     return (start, end)
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -61,13 +62,13 @@ class Server:
         # Validate inputs
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-        
+
         # Get dataset
         dataset = self.dataset()
-        
+
         # Get index range
         start, end = index_range(page, page_size)
-        
+
         # Return the correct page
         return dataset[start:end]
 
@@ -86,21 +87,21 @@ class Server:
         # Validate inputs
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-        
+
         # Get dataset
         dataset = self.dataset()
-        
+
         # Calculate total number of pages
         total_items = len(dataset)
         total_pages = math.ceil(total_items / page_size)
-        
+
         # Get data for the current page
         page_data = self.get_page(page, page_size)
-        
+
         # Calculate next and previous pages
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > 1 else None
-        
+
         # Return the hypermedia pagination dictionary
         return {
             "page_size": len(page_data),
