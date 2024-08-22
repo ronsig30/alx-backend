@@ -19,7 +19,7 @@ class LIFOCache(BaseCaching):
         """
         if key is None or item is None:
             return
- 
+
         if key in self.cache_data:
             # Update the item if the key already exists
             self.cache_data[key] = item
